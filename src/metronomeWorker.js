@@ -1,10 +1,10 @@
 const workercode = () => {
     let timerId = null;
-    let interval = 100; 
-    
+    let interval = 100;
+
     let onmessage = (e) =>{
          switch(e.data.type) {
-            case "start":    
+            case "start":
                 console.log("starting");
                 timerId = setInterval(() => {postMessage("tick");}, interval);
                 break;
@@ -34,6 +34,6 @@ const workercode = () => {
 let code = workercode.toString();
 code = code.substring(code.indexOf("{")+1, code.lastIndexOf("}"));
 
-const blob = new Blob([code], {type: "application/javascript"});
+const blob = new Blob([code], {type: "text/javascript"});
 const metronomeWorker = URL.createObjectURL(blob);
 export default metronomeWorker;
