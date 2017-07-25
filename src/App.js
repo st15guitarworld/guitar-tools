@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import MetronomeContainer from './MetronomeContainer';
-import TunerContainer from './TunerContainer';
-import ChordFinderContainer from './ChordFinderContainer';
-import ScalesContainer from './ScalesContainer';
-import {BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Nav from './Nav';
-import './App.css';
+import React, { Component } from "react";
+import MetronomeContainer from "./MetronomeContainer";
+import TunerContainer from "./TunerContainer";
+import ChordFinderContainer from "./ChordFinderContainer";
+import ScalesContainer from "./ScalesContainer";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Nav from "./Nav";
+import "./App.css";
 
 class App extends Component {
-    render() {
+  render() {
     return (
       <Router>
-      <div className="app-container" >
-        <h2 className="header-text">Guitar Toolkit</h2>
+        <div className="app-container">
+          <h2 className="header-text">Guitar Toolkit</h2>
           <Nav />
           <section className="route-container">
-            <Route exact path="/" component={MetronomeContainer}/>
-            <Route path="/tuner" component={TunerContainer}/>
-            <Route path="/chord-finder" component={ChordFinderContainer}/>
-            <Route path="/scale-viewer" component={ScalesContainer}/>
+            <Route exact path="/" component={MetronomeContainer} />
+            <Route path="/tuner" component={TunerContainer} />
+            <Route path="/chord-finder" component={ChordFinderContainer} />
+            <Route path="/scale-viewer" component={ScalesContainer} />
           </section>
-      </div>
+        </div>
       </Router>
     );
   }
