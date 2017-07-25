@@ -1,5 +1,5 @@
 /* eslint import/no-webpack-loader-syntax: off */
-import AudioContextMonkeyPatch from "./AudioContextMonkeyPatch.js";
+import getContext from "./getContext.js";
 var MetronomeWorker = require("worker-loader!./metronomeWorker.js");
 
 export default function metronome() {
@@ -85,7 +85,7 @@ export default function metronome() {
   };
 
   let init = () => {
-    audioContext = new AudioContext();
+    audioContext = getContext();
 
     timeWorker = new MetronomeWorker();
     timeWorker.onmessage = e => {
@@ -135,6 +135,9 @@ export default function metronome() {
   let undraw = () => {
     if (drawId) {
       cancelAnimationFrame(drawId);
+    }
+    if (timeWorker) {
+      timeWorker.terminate();
     }
   };
   return {
