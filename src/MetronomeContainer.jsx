@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Tone from "tone";
 import metronome from "./metronome.js";
+import Slider from 'react-rangeslider';
+import 'react-rangeslider/lib/index.css'
 
 export default class MetronomeContainer extends Component {
   constructor(props) {
@@ -9,10 +11,9 @@ export default class MetronomeContainer extends Component {
     this.metronome.init();
     this.state = {
       bpm: this.metronome.getBpm(),
-      bpmLowerLimit: 30,
-      bpmUpperLimit: 240,
+      bpmLowerLimit: 40,
+      bpmUpperLimit: 300,
       on: this.metronome.isPlaying,
-      volume: 0.3
     };
 
     this.decrementMetronome = this.decrementMetronome.bind(this);
@@ -53,10 +54,19 @@ export default class MetronomeContainer extends Component {
   }
   render() {
     return (
-      <div>
-        <button onClick={() => this.decrementMetronome()}>-</button>
-        {this.state.bpm}
-        <button onClick={() => this.incrementMetronome()}>+</button>
+      <div className="metronome-container">
+        <h1 className="bpm">{this.state.bpm}</h1><sub>BPM</sub><br/>
+        {/* <button onClick={() => this.decrementMetronome()}>-</button>
+
+        <button onClick={() => this.incrementMetronome()}>+</button> */}
+        <Slider
+        value={this.state.bpm}
+        min={this.state.bpmLowerLimit}
+        max={this.state.bpmUpperLimit}
+        tooltip={false}
+        onChange={(e) => { this.setState({bpm:e})}}
+        onChangeComplete={() => this.metronome.setBpm(this.state.bpm)}
+      />
         <button
           onClick={() => this.toggleMetronome()}
           ref={btn => {

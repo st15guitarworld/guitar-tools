@@ -34,6 +34,16 @@ a {
 .app-container > .header-text {
   text-align: center;
 }
+
+.route-container {
+  max-width:500px;
+  margin: auto;
+}
+.metronome-container > .bpm {
+  display: inline-block;
+}
+
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
 }
