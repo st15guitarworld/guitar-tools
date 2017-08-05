@@ -10,11 +10,20 @@
     "react-rangeslider": "^2.1.0",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
+    "tonal": "^0.69.7",
     "tone": "^0.10.0",
     "worker-loader": "^0.8.1"
   },
   "devDependencies": {
-    "react-scripts": "1.0.10"
+    "git-scripts": "^0.2.1",
+    "react-scripts": "1.0.10",
+    "surge": "^0.19.0"
+  },
+  "git": {
+    "scripts": {
+      "pre-commit": "npm run build",
+      "pre-push": "surge ./build"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
