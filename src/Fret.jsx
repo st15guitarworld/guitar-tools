@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+
 export default class Fret extends Component {
   constructor(props) {
     super(props);
     this.onFretClick = this.onFretClick.bind(this);
     this.generateNoteBubble = this.generateNoteBubble.bind(this);
+    this.drawX = this.drawX.bind(this);
+  }
+  drawX(){
+    if(this.props.fret === 0 && !this.props.stringIsSet){
+      return (<span id="x">X</span>)
+    }
+    return null;
   }
   generateNoteBubble() {
     if (this.props.isActiveFret) {
@@ -20,7 +28,8 @@ export default class Fret extends Component {
   }
   render() {
     return (
-      <td>
+      <td className="fret">
+        {this.drawX()}
         <span className="fretArea" onClick={event => this.onFretClick(event)} />
         {this.generateNoteBubble()}
       </td>
