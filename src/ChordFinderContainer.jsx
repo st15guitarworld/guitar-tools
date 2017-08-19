@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 import GuitarNeck from "./GuitarNeck";
+import Guitar from './karplus-strong/Guitar.js';
+import getContext from './getContext.js';
 import tonal from 'tonal';
 import sharp11 from 'sharp11';
 
 export default class ChordFinderContainer extends Component {
 constructor(props){
 super(props);
+let context = getContext();
 this.state = {
   chord:[-1,-1,-1,-1,-1,-1],
-  tuning:["E4","B3","G3","D3","A2","E2"]
+  tuning:["E4","B3","G3","D3","A2","E2"],
+  guitar:new Guitar(context,context.destination)
 };
 this.chordChanged = this.chordChanged.bind(this);
 this.getChordSuggestion = this.getChordSuggestion.bind(this);
 this.getNotesFromPositions = this.getNotesFromPositions.bind(this);
+this.playNote = this.playNote.bind(this);
+}
+playNote(string, fret) {
+  this.state.guitar.playNote(string,0,1,fret);
 }
 getNotesFromPositions(){
     let notes = [];
@@ -28,7 +36,7 @@ getNotesFromPositions(){
 }
 
 getChordSuggestion(){
-  let suggestedChordText = "Chord: ";
+  let suggestedChordText = "";
   let filteredChord = this.getNotesFromPositions();
   if(typeof filteredChord == "undefined" || filteredChord == null || filteredChord.length <= 0) return suggestedChordText;
   let suggestedChord = sharp11.chord.identify(...filteredChord);
@@ -40,13 +48,12 @@ this.setState({chord:newChord})
 }
   render() {
     return(
-    <div>
+    <div className="clearfix">
       <GuitarNeck chord={this.state.chord} tuning={this.state.tuning}
-                 chordChanged={(newChord) => this.chordChanged(newChord)}/>
-   <h2 style={{
-       float:'right',
-       textAlign:'left'
-     }}>
+                 chordChanged={(newChord) => this.chordChanged(newChord)}
+                playNote={(string,fret)=> this.playNote(string,fret)}
+               />
+   <h2 className="pull-left">
      {this.getChordSuggestion()}
    </h2>
     </div>

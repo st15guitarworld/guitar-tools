@@ -6,7 +6,14 @@ export default class Fret extends Component {
     this.onFretClick = this.onFretClick.bind(this);
     this.generateNoteBubble = this.generateNoteBubble.bind(this);
     this.drawX = this.drawX.bind(this);
+    this.drawFretNumber = this.drawFretNumber.bind(this);
   }
+  drawFretNumber(){
+    if (this.props.string == 6) {
+      return <i className="fret-number">{this.props.fret}</i>
+    }
+  }
+
   drawX(){
     if(this.props.fret === 0 && !this.props.stringIsSet){
       return (<span id="x">X</span>)
@@ -29,6 +36,7 @@ export default class Fret extends Component {
   render() {
     return (
       <td className="fret">
+        {this.drawFretNumber()}
         {this.drawX()}
         <span className="fretArea" onClick={event => this.onFretClick(event)} />
         {this.generateNoteBubble()}

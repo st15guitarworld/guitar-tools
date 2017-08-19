@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Tone from "tone";
 import metronome from "./metronome.js";
 import Slider from 'react-rangeslider';
+import IconButton from './IconButton.jsx';
+import './css/flaticon.css';
 import 'react-rangeslider/lib/index.css'
 
 export default class MetronomeContainer extends Component {
@@ -13,24 +15,30 @@ export default class MetronomeContainer extends Component {
       bpm: this.metronome.getBpm(),
       bpmLowerLimit: 40,
       bpmUpperLimit: 300,
-      on: this.metronome.isPlaying,
-    };
-
+      on: this.metronome.isPlaying
+    }
     this.decrementMetronome = this.decrementMetronome.bind(this);
     this.incrementMetronome = this.incrementMetronome.bind(this);
     this.toggleMetronome = this.toggleMetronome.bind(this);
+    this.updateBPM = this.updateBPM.bind(this);
+    this.onBPMUpdate = this.onBPMUpdate.bind(this);
+  }
+  updateBPM(newBpm) {
+    this.setState({bpm:newBpm});
+  }
+  onBPMUpdate(newBPM){
+    this.updateBPM(newBPM);
   }
   componentDidMount() {
     this.metronome.draw(
       () => {
-        this.playbutton.style.color = "red";
+
       },
       () => {
-        this.playbutton.style.color = "green";
+
       }
     );
   }
-
   componentWillUnmount() {
     if (this.state.on) {
       this.metronome.play();
@@ -43,38 +51,46 @@ export default class MetronomeContainer extends Component {
     this.metronome.play();
   }
   decrementMetronome() {
-    const oldBPM = this.state.bpm;
-    this.metronome.setBpm(oldBPM - 1);
-    this.setState({ bpm: oldBPM - 1 });
+    const newBpm = this.state.bpm - 1 ;
+    if (newBpm < this.state.bpmLowerLimit) return;
+    this.metronome.setBpm(newBpm);
+    this.updateBPM(newBpm);
   }
   incrementMetronome() {
-    const oldBPM = this.state.bpm;
-    this.metronome.setBpm(oldBPM + 1);
-    this.setState({ bpm: oldBPM + 1 });
+    const newBPM = this.state.bpm + 1;
+    if (newBPM > this.state.bpmUpperLimit) return;
+    this.metronome.setBpm(newBPM);
+    this.updateBPM(newBPM);
   }
   render() {
+    const iconButtonStyle = {
+      position:'relative',
+      top:'-14px'
+    }
+    let playPauseIcon = this.state.on ? "flaticon-pause-button" : "flaticon-play-button";
+
     return (
       <div className="metronome-container">
-        <h1 className="bpm">{this.state.bpm}</h1><sub>BPM</sub><br/>
-        {/* <button onClick={() => this.decrementMetronome()}>-</button>
-
-        <button onClick={() => this.incrementMetronome()}>+</button> */}
-        <Slider
-        value={this.state.bpm}
-        min={this.state.bpmLowerLimit}
-        max={this.state.bpmUpperLimit}
-        tooltip={false}
-        onChange={(e) => { this.setState({bpm:e})}}
-        onChangeComplete={() => this.metronome.setBpm(this.state.bpm)}
-      />
-        <button
-          onClick={() => this.toggleMetronome()}
-          ref={btn => {
-            this.playbutton = btn;
-          }}
-        >
-          {this.state.on ? "Pause" : "Start"}
+       <div className="bpm-container clearfix">
+        <h1 className="bpm inline">{this.state.bpm}</h1><sub>BPM</sub><br/>
+        <button className="play-pause-button circle" ref={btn=> {this.playbutton = btn}} onClick={() => this.toggleMetronome()}>
+          <i className={playPauseIcon}></i>
         </button>
+        </div>
+        <div>
+          <IconButton theClass="icon-lg" icon="-" theStyle={iconButtonStyle} onClick={this.decrementMetronome}></IconButton>
+          <div className="slider-container">
+            <Slider
+            value={this.state.bpm}
+            min={this.state.bpmLowerLimit}
+            max={this.state.bpmUpperLimit}
+            tooltip={false}
+            onChange={(e) => { this.onBPMUpdate(e)}}
+            onChangeComplete={(e) => {this.metronome.setBpm(this.state.bpm)}}
+          />
+          </div>
+          <IconButton theClass="icon-lg" icon="+" theStyle={iconButtonStyle} onClick={this.incrementMetronome}></IconButton>
+        </div>
       </div>
     );
   }

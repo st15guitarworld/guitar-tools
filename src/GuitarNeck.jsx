@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import FretContainer from './FretContainer'
 import Fret from './Fret';
 import tonal from 'tonal'
-/*
-chord:[-1,-1,-1,-1,-1,-1],
-tuning:["E4","B3","G3","D3","A2","E2"]
-*/
+
 export default class GuitarNeck extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +33,7 @@ export default class GuitarNeck extends Component {
     }
     newChord[string-1] = fret;
     this.props.chordChanged(newChord);
+    this.props.playNote(string - 1 ,fret);
   }
   isActiveFret(stringNumber,fretNumber){
     if(this.props.chord[stringNumber-1] === fretNumber){
@@ -59,7 +57,7 @@ export default class GuitarNeck extends Component {
   }
   render() {
     return (
-      <table className="guitar-neck">
+      <table className="guitar-neck pull-left">
         <tbody>
         {this.generateFretContainers(0)}
         {this.generateFretContainers(1)}

@@ -12,7 +12,6 @@ class App extends Component {
     return (
       <Router>
         <div className="app-container">
-          <h2 className="header-text">Guitar Toolkit</h2>
           <Nav />
           <section className="route-container">
             <Route exact path="/" component={MetronomeContainer} />

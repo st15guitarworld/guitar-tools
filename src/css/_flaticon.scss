@@ -1,0 +1,55 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 14/08/2017 04:01
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-tuning-fork-shaped:before { content: "\f100"; }
+.flaticon-music:before { content: "\f101"; }
+.flaticon-musical-note-black-shape:before { content: "\f102"; }
+.flaticon-metronome:before { content: "\f103"; }
+.flaticon-audio-volume:before { content: "\f104"; }
+.flaticon-mute-volume-interface-symbol:before { content: "\f105"; }
+.flaticon-pause-button:before { content: "\f106"; }
+.flaticon-play-button:before { content: "\f107"; }
+    
+    $font-Flaticon-tuning-fork-shaped: "\f100";
+    $font-Flaticon-music: "\f101";
+    $font-Flaticon-musical-note-black-shape: "\f102";
+    $font-Flaticon-metronome: "\f103";
+    $font-Flaticon-audio-volume: "\f104";
+    $font-Flaticon-mute-volume-interface-symbol: "\f105";
+    $font-Flaticon-pause-button: "\f106";
+    $font-Flaticon-play-button: "\f107";
