@@ -20,7 +20,9 @@ this.getNotesFromPositions = this.getNotesFromPositions.bind(this);
 this.playNote = this.playNote.bind(this);
 }
 playNote(string, fret) {
-  this.state.guitar.playNote(string,0,1,fret);
+  if(fret > -1){
+    this.state.guitar.playNote(string,0,1,fret);
+  }
 }
 getNotesFromPositions(){
     let notes = [];
