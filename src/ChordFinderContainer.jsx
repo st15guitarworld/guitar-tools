@@ -4,6 +4,7 @@ import Guitar from './karplus-strong/Guitar.js';
 import getContext from './getContext.js';
 import tonal from 'tonal';
 import sharp11 from 'sharp11';
+import Constants from './Constants';
 
 export default class ChordFinderContainer extends Component {
 constructor(props){
@@ -20,7 +21,7 @@ this.getNotesFromPositions = this.getNotesFromPositions.bind(this);
 this.playNote = this.playNote.bind(this);
 }
 playNote(string, fret) {
-  if(fret > -1){
+  if(fret > Constants.MUTED_STRING){
     this.state.guitar.playNote(string,0,1,fret);
   }
 }

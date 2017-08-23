@@ -21,7 +21,7 @@ drawFretAccent(){
   return fretAccent;
   }
 
-  if(Constants.fretsWithAccents.indexOf(this.props.fret) > -1 && this.props.string == 4){
+  if(Constants.FRETS_WITH_ACCENTS.indexOf(this.props.fret) > -1 && this.props.string == 4){
     return fretAccent;
   }
 }
