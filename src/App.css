@@ -1,5 +1,10 @@
+:root {
+  font-size: 15px;
+}
+
 ul {
   list-style: none;
+  margin: 0px;
 }
 button {
   outline: 0;
@@ -12,10 +17,12 @@ span,a,button{
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .nav-container {
-  max-width: 400px;
-  margin: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
   display: flex;
   justify-content: center;
+  z-index: 4;
 }
 .nav-container > ul {
   width: 100%;
@@ -25,7 +32,6 @@ span,a,button{
 }
 .nav-container > ul > li {
   flex-grow: 1;
-  padding: 1rem 0;
   text-align: center;
 }
 
@@ -90,7 +96,7 @@ span,a,button{
   height: 44px;
   background-color: transparent;
   cursor: pointer;
-  z-index: 10;
+  z-index: 3;
 }
 .guitar-neck tbody .base-fret-container .fret .fretArea {
     top: 0px;
@@ -198,10 +204,30 @@ position: relative;
 }
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
+.nav-container {
+  height: 50px;
+}
+.route-container {
+  margin-bottom: 50px;
+}
+.guitar-neck {
+  float:none !important;
+  margin:auto;
+}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
+  .nav-container {
+    height: 60px;
+  }
+  .guitar-neck {
+    float:none !important;
+    margin:auto;
+  }
+  .route-container {
+    margin-bottom: 60px;
+  }
 }
 
 /* Small Devices, Tablets */
@@ -209,6 +235,15 @@ position: relative;
   .app-container {
     padding: 10px 0px;
     width: 500px;
+  }
+  .guitar-neck {
+    float: left !important;
+  }
+  .nav-container {
+    max-width: 400px;
+    padding-bottom: 15px;
+    position: inherit;
+    margin: auto;
   }
 }
 
@@ -218,6 +253,15 @@ position: relative;
     padding: 10px 0px;
     width: 700px;
   }
+  .guitar-neck {
+    float: left !important;
+  }
+  .nav-container {
+    max-width: 400px;
+    padding-bottom: 15px;
+    position: inherit;
+    margin: auto;
+  }
 }
 
 /* Large Devices, Wide Screens */
@@ -225,5 +269,14 @@ position: relative;
   .app-container {
     padding: 15px 0px;
     width: 900px;
+  }
+  .guitar-neck {
+    float: left !important;
+  }
+  .nav-container {
+    padding-bottom: 15px;
+    max-width: 400px;
+    position: inherit;
+    margin: auto;
   }
 }
