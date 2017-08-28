@@ -9,10 +9,8 @@ export default class GuitarNeck extends Component {
     this.isActiveFret = this.isActiveFret.bind(this);
     this.generateFretContainers = this.generateFretContainers.bind(this);
     this.noteSelected = this.noteSelected.bind(this);
-    this.getNoteFromBase =
-    this.getNoteFromBase.bind(this);
-    this.stringIsSet =
-    this.stringIsSet.bind(this);
+    this.getNoteFromBase = this.getNoteFromBase.bind(this);
+    this.stringIsSet = this.stringIsSet.bind(this);
   }
 
   stringIsSet(stringNumber) {

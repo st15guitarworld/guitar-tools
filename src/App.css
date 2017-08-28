@@ -5,6 +5,7 @@
 ul {
   list-style: none;
   margin: 0px;
+  padding: 0px;
 }
 button {
   outline: 0;
@@ -48,8 +49,10 @@ span,a,button{
 }
 
 .route-container {
-  max-width:500px;
+  max-width: 500px;
   margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .metronome-container {
   position:relative;
@@ -203,14 +206,26 @@ i[class^="flaticon-"]{
 .guitar-neck tbody tr td:nth-child(6) {
 position: relative;
 }
+.chord-finder-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height:50px;
+  z-index: 4;
+}
+.chord-finder-buttons > li {
+align-self: center;
+flex-grow: 1;
+}
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
 .nav-container {
   height: 50px;
 }
-.route-container {
-  margin-bottom: 50px;
-}
+
 .guitar-neck {
   float:none !important;
   margin:auto;
@@ -227,12 +242,20 @@ position: relative;
     margin:auto;
   }
   .route-container {
-    margin-bottom: 60px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
+  .chord-finder-buttons {
+    flex-direction: column;
+    position: inherit;
+    z-index: 4;
+    width: auto;
+    height: auto;
+  }
   .app-container {
     padding: 10px 0px;
     width: 500px;
@@ -240,16 +263,30 @@ position: relative;
   .guitar-neck {
     float: left !important;
   }
+  .route-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .nav-container {
     max-width: 400px;
     padding-bottom: 15px;
     position: inherit;
     margin: auto;
   }
+  .chord-finder-buttons > li {
+  align-self: auto;
+  }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
+  .chord-finder-buttons {
+    flex-direction: column;
+    position: inherit;
+    z-index: 4;
+    width: auto;
+    height: auto;
+  }
   .app-container {
     padding: 10px 0px;
     width: 700px;
@@ -257,16 +294,30 @@ position: relative;
   .guitar-neck {
     float: left !important;
   }
+  .route-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .nav-container {
     max-width: 400px;
     padding-bottom: 15px;
     position: inherit;
     margin: auto;
   }
+  .chord-finder-buttons > li {
+  align-self: auto;
+  }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width: 1200px) {
+  .chord-finder-buttons {
+    flex-direction: column;
+    position: inherit;
+    z-index: 4;
+    width: auto;
+    height: auto;
+  }
   .app-container {
     padding: 15px 0px;
     width: 900px;
@@ -274,10 +325,17 @@ position: relative;
   .guitar-neck {
     float: left !important;
   }
+  .route-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .nav-container {
     padding-bottom: 15px;
     max-width: 400px;
     position: inherit;
     margin: auto;
+  }
+  .chord-finder-buttons > li {
+  align-self: auto;
   }
 }
