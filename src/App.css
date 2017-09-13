@@ -1,7 +1,10 @@
 :root {
   font-size: 15px;
 }
-
+@font-face {
+  font-family: 'digital';
+  src: url('./css/Fonts/digital-7.ttf');
+}
 ul {
   list-style: none;
   margin: 0px;
