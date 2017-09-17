@@ -60,8 +60,10 @@ export default function TunerGraphic(container){
       });
 
        hand = new Konva.Line({
-        points: [x, y - 80,x,y-innerRadius + 15],
+        points: [0,0,0,-innerRadius * 0.60],
         stroke: 'black',
+        x:x,
+        y:y - 80,
         strokeWidth: 3
       });
 
@@ -134,8 +136,27 @@ let drawBlackCircle = (r,x,y)=> {
     strokeWidth:'1'
   });
 }
+
+let valueBetween = (val,min,max) => {
+  return (Math.min(max, Math.max(min, val)));
+}
+
+let calculateHandRotation = (currentRotation,centsOffFromPitch) => {
+    if(isNaN(centsOffFromPitch)){
+      return 0;
+    }
+
+    let angletoRotate = valueBetween(3.3 * centsOffFromPitch,-33,33);
+    return valueBetween(angletoRotate - currentRotation,-33,33);
+}
+
 output.onUpdate = (frequency,two,note,centsOffFromPitch) => {
   noteText.text(note);
+  let currentRotation = hand.rotation();
+  //console.log('current rotation: '+ currentRotation+ ',cents:'+centsOffFromPitch );
+  console.log('frequency:'+two+',new rotation:'+calculateHandRotation(currentRotation,centsOffFromPitch)+
+  ',cents:'+centsOffFromPitch);
+  hand.rotate(calculateHandRotation(currentRotation,centsOffFromPitch));
   //hand.rotate(1);
   layer.batchDraw();
 }
