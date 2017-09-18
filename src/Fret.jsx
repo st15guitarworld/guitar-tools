@@ -35,7 +35,7 @@ drawFretAccent(){
     if (this.props.isActiveFret) {
       return (
         <span className="note-bubble">
-          {this.props.note}
+          {this.props.noteText}
         </span>
       );
     }

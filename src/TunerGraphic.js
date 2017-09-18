@@ -153,11 +153,7 @@ let calculateHandRotation = (currentRotation,centsOffFromPitch) => {
 output.onUpdate = (frequency,two,note,centsOffFromPitch) => {
   noteText.text(note);
   let currentRotation = hand.rotation();
-  //console.log('current rotation: '+ currentRotation+ ',cents:'+centsOffFromPitch );
-  console.log('frequency:'+two+',new rotation:'+calculateHandRotation(currentRotation,centsOffFromPitch)+
-  ',cents:'+centsOffFromPitch);
   hand.rotate(calculateHandRotation(currentRotation,centsOffFromPitch));
-  //hand.rotate(1);
   layer.batchDraw();
 }
   return output;
