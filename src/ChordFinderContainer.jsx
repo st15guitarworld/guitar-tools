@@ -26,6 +26,17 @@ this.moveUp = this.moveUp.bind(this);
 this.moveDown = this.moveDown.bind(this);
 this.strumChord = this.strumChord.bind(this);
 this.buildAccidentalButton = this.buildAccidentalButton.bind(this);
+this.isActiveFret = this.isActiveFret.bind(this);
+this.stringIsSet = this.stringIsSet.bind(this);
+}
+stringIsSet(stringNumber) {
+  return this.state.chord[stringNumber - 1] !== -1;
+}
+isActiveFret(stringNumber,fretNumber){
+  if(this.state.chord[stringNumber-1] === fretNumber){
+      return true;
+  }
+  return false;
 }
 buildAccidentalButton(){
   if(this.state.accidental === '#'){
@@ -104,6 +115,8 @@ this.setState({chord:newChord})
                 getNoteText={(string,fretNumber) => {return generateNote(string,fretNumber,this.state.tuning,this.state.accidental)}}
                  chordChanged={(newChord) => this.chordChanged(newChord)}
                 playNote={(string,fret)=> this.playNote(string,fret)}
+                isActiveFret={this.isActiveFret}
+                stringIsSet={this.stringIsSet}
                />
     <ul className="chord-finder-buttons pull-left">
       <li style={{flexBasis:'3.8em'}}>
